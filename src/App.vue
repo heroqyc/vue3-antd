@@ -1,22 +1,36 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
-  <router-view />
+  <a-config-provider :locale="state.i18nLocale">
+    <router-view />
+  </a-config-provider>
 </template>
 
-<script setup lang="ts">
-  // This starter template is using Vue 3 <script setup> SFCs
-  // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-  // import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts" setup>
+  import { reactive, watch } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useThemeConfig } from '/@/store/themeConfig';
+  import { useI18n } from 'vue-i18n';
+
+  const { messages } = useI18n();
+  const { themeConfig } = storeToRefs(useThemeConfig());
+  const state = reactive({
+    i18nLocale: messages.value[themeConfig.value.globalI18n],
+  });
+
+  watch(
+    () => themeConfig.value.globalI18n,
+    (newValue) => {
+      console.log('newValue', newValue);
+      // state.i18nLocale = messages.value[newValue];
+    },
+  );
 </script>
 
 <style>
   #app {
+    width: 100%;
+    height: 100%;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
   }
 </style>

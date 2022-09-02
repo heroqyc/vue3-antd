@@ -13,8 +13,6 @@ export default defineConfig({
   ],
   resolve: {
     // 定义别名
-    alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+    alias: [{ find: '/@', replacement: resolve(__dirname, 'src') }],
   },
 });

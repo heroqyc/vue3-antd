@@ -1,4 +1,8 @@
-## 0.0.1 (2021-11-09)
+## 0.0.1 (2021-11-10)
+
+### Bug Fixes
+
+- 修改 xuex ts 支持 ([efffc38](https://github.com/heroqyc/vue3-antd/commit/efffc3858fec89b7727a9fdd18ffe9b433223e19))
 
 ### Features
 
